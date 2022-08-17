@@ -35,6 +35,8 @@ public class VerActivity extends AppCompatActivity {
         fabEditar = findViewById(R.id.fabEditar);
         fabEliminar = findViewById(R.id.fabEliminar);
 
+
+
         if (savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
             if (extras == null){

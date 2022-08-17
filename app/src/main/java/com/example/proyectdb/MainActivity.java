@@ -36,18 +36,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtBuscar = findViewById(R.id.txtBuscar);
-
         listaContactos=(RecyclerView) findViewById(R.id.listaContactos);
         fabNuevo = findViewById(R.id.favNuevo);
         listaContactos.setLayoutManager(new LinearLayoutManager(this));
-
         DbContactos dbContactos = new DbContactos(MainActivity.this);
         listaArrayContactos = new ArrayList<>();
-
         //ListaContactosAdapter adapter = new ListaContactosAdapter(dbContactos.mostrarContactos());
-
         adapter = new ListaContactosAdapter(dbContactos.mostrarContactos());
         listaContactos.setAdapter(adapter);
+
 
         fabNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuNuevo:
                 nuevoRegistro();
             return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -77,7 +73,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NuevoActivity.class);
         startActivity(intent);
     }
-
-
-
 }

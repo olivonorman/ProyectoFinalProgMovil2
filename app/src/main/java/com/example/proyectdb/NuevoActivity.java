@@ -24,6 +24,8 @@ public class NuevoActivity extends AppCompatActivity{
         txtCorreoElectronico = findViewById(R.id.txtCorreoElectronico);
         btnGuarda = (Button)findViewById(R.id.btnGuarda);
 
+
+
         btnGuarda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

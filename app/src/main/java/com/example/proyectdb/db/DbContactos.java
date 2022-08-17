@@ -12,9 +12,7 @@ import com.example.proyectdb.entidades.Contactos;
 import java.util.ArrayList;
 
 public class DbContactos extends DbHelper {
-
     Context context;
-
     public DbContactos(@Nullable Context context){
         super(context);
         this.context = context;
@@ -24,12 +22,10 @@ public class DbContactos extends DbHelper {
         try {
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
-
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
             values.put("telefono", telefono);
             values.put("correo_electronico", correo_electronico);
-
             id= db.insert( TABLA_CONTACTOS, null,values);
         }
         catch (Exception ex) {
@@ -39,15 +35,13 @@ public class DbContactos extends DbHelper {
     }
 
     public ArrayList<Contactos> mostrarContactos(){
-
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         ArrayList<Contactos> listaContactos = new ArrayList<>();
         Contactos contactos = null;
         Cursor cursorContactos = null;
-
         cursorContactos = db.rawQuery("SELECT * FROM " + TABLA_CONTACTOS, null);
+
         if (cursorContactos.moveToFirst()){
             do{
                 contactos = new Contactos();
@@ -64,13 +58,10 @@ public class DbContactos extends DbHelper {
     }
 
     public Contactos verContactos(int id){
-
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         Contactos contactos = null;
         Cursor cursorContactos = null;
-
         cursorContactos = db.rawQuery("SELECT * FROM " + TABLA_CONTACTOS + " WHERE id  = " + id + " LIMIT 1 ", null);
 
         if (cursorContactos.moveToFirst()){
@@ -84,6 +75,8 @@ public class DbContactos extends DbHelper {
         cursorContactos.close();
         return contactos;
     }
+
+
 
     public boolean editarContacto (int id,String nombre, String telefono, String correo_electronico) {
 

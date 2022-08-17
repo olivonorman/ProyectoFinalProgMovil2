@@ -27,7 +27,6 @@ public class EditarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver);
-
         txtNombre = findViewById(R.id.txtNombre);
         txtTelefono = findViewById(R.id.txtTelefono);
         txtCorreo = findViewById(R.id.txtCorreoElectronico);
@@ -36,19 +35,12 @@ public class EditarActivity extends AppCompatActivity {
         fabEditar.setVisibility(View.INVISIBLE);
         fabEliminar = findViewById(R.id.fabEliminar);
         fabEliminar.setVisibility(View.INVISIBLE);
-
         if (savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
             if (extras == null){
                 id = Integer.parseInt(null);
-
-            }else{
-                id= extras.getInt("ID");
-            }
-        }else{
-            id = (int) savedInstanceState.getSerializable("ID");
-        }
-
+            }else{id= extras.getInt("ID");}
+        }else{id = (int) savedInstanceState.getSerializable("ID");}
         final DbContactos dbContactos = new DbContactos(EditarActivity.this);
         contactos = dbContactos.verContactos(id);
 
@@ -57,13 +49,11 @@ public class EditarActivity extends AppCompatActivity {
             txtTelefono.setText(contactos.getTelefono());
             txtCorreo.setText(contactos.getCorreo_electronico());
         }
-
         btnGuarda.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 if (!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")){
                     correcto = dbContactos.editarContacto(id,txtNombre.getText().toString(),txtTelefono.getText().toString(),txtCorreo.getText().toString());
-
                     if (correcto){
                         Toast.makeText(EditarActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();
                         verRegistros();
